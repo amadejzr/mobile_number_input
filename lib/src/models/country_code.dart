@@ -24,5 +24,6 @@ class CountryCode {
   final String dialCode;
   final String flagUri;
 
-  CountryCode({required this.name, required this.dialCode, required this.flagUri});
+  CountryCode(
+      {required this.name, required this.dialCode, required this.flagUri});
 }

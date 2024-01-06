@@ -10,7 +10,7 @@ A Flutter package for inputting mobile numbers with an integrated country code p
 
 ## Getting Started
 
-Pull repo
+Pull repo & add as a dependency in your `pubspec.yaml` file.
 ```yaml
 mobile_number_input:
     path: path/to/mobile_number_input
