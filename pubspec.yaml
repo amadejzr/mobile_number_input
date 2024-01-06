@@ -1,5 +1,5 @@
 name: mobile_number_input
-description: "A new Flutter package project."
+description: "Customizable widget for entering phone numbers with country code selector."
 version: 0.0.1
 repository: https://github.com/username/mobile_number_input
 
