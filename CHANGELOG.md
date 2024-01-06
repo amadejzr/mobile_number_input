@@ -3,6 +3,7 @@
 ## Release [0.0.3]
 - feat: Added all country codes
 - feat: Added search and optimized dialog with debounce
+- Updated README with example and pictures.
 
 ## Release [0.0.2]
 INITIAL RELEASE

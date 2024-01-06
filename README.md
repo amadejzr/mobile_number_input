@@ -23,36 +23,74 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final TextEditingController _numberController = TextEditingController();
-  CountryCode _selectedCountry = CountryProvider.findCountryByName('United States');
+  CountryCode _selectedCountry = CountryProvider.findCountryByName('Slovenia');
 
   @override
   void dispose() {
-    _numberController.dispose();
     super.dispose();
+    _numberController.dispose();
+  }
+
+  void _onCountryChanged(CountryCode countryCode) {
+    if (mounted) {
+      setState(() {
+        _selectedCountry = countryCode;
+      });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Mobile Number Input Example"),
-      ),
+      background: Colors.black,
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: MobileNumberInput(
-            onCountryChanged: (country) {
-              setState(() {
-                _selectedCountry = country;
-              });
-            },
+            onCountryChanged: _onCountryChanged,
             defaultCountry: _selectedCountry,
             controller: _numberController,
-            hintText: 'Enter your mobile number',
-            // ... other properties ...
+            hintText: 'Phone number',
+            hintStyle: const TextStyle(color: Color(0xFFBEC0C7)),
+            textStyle: const TextStyle(color: Colors.white),
+            dialCodeTextStyle: const TextStyle(color: Color(0xFFBEC0C7)),
+            decoration: BoxDecoration(
+              color: const Color(0xFF29374F),
+              borderRadius: BorderRadius.circular(15),
+            ),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(15),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(15),
+              borderSide: const BorderSide(color: Color(0xFF29374F)),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(15),
+              borderSide: const BorderSide(color: Colors.blue),
+            ),
           ),
         ),
-      ),
+      )
     );
   }
 }
+```
+
+### EXAMPLE IMAGES
+
+
+
+  <!-- Row 1 -->
+  <img src="readmeAssets/field.png" alt="input field" width="200"/>
+  <img src="readmeAssets/field_focused.png" alt="input field focused" width="200"/>
+  <br>
+  
+  <!-- Row 2 -->
+  <img src="readmeAssets/field_dialog.png" alt="input field dialog" width="200"/>
+  <img src="readmeAssets/field_dialog_search.png" alt="input field dialog search" width="200"/>
+
+
+
+
+
