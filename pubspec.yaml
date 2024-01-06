@@ -5,7 +5,7 @@ repository: https://github.com/username/mobile_number_input
 
 environment:
   sdk: '>=3.2.3 <4.0.0'
-  flutter: ">=1.17.0"
+  flutter: '>=1.20.0'
 
 dependencies:
   flutter:
