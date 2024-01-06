@@ -23,7 +23,8 @@ class CountryCodeDialog extends StatefulWidget {
 
 class _CountryCodeDialogState extends State<CountryCodeDialog> {
   late List<CountryCode> countryList;
-  final ValueNotifier<List<CountryCode>> _filteredCountryListNotifier = ValueNotifier([]);
+  final ValueNotifier<List<CountryCode>> _filteredCountryListNotifier =
+      ValueNotifier([]);
   final TextEditingController _searchController = TextEditingController();
   Timer? _debounce;
 
@@ -45,7 +46,9 @@ class _CountryCodeDialogState extends State<CountryCodeDialog> {
       List<CountryCode> filteredList = enteredKeyword.isEmpty
           ? countryList
           : countryList
-              .where((country) => country.name.toLowerCase().contains(enteredKeyword.toLowerCase()))
+              .where((country) => country.name
+                  .toLowerCase()
+                  .contains(enteredKeyword.toLowerCase()))
               .toList();
       _filteredCountryListNotifier.value = filteredList;
     });
@@ -108,4 +111,3 @@ class _CountryCodeDialogState extends State<CountryCodeDialog> {
     super.dispose();
   }
 }
-
