@@ -73,13 +73,11 @@ class MobileNumberInput extends StatefulWidget {
 
 class _MobileNumberInputState extends State<MobileNumberInput> {
   late CountryCode _selectedCountry;
-  late TextEditingController _controller;
 
   @override
   void initState() {
     super.initState();
     _selectedCountry = widget.defaultCountry;
-    _controller = widget.controller;
   }
 
   void _showCountryPicker() {
@@ -101,17 +99,11 @@ class _MobileNumberInputState extends State<MobileNumberInput> {
   }
 
   @override
-  void dispose() {
-    super.dispose();
-    _controller.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Container(
       decoration: widget.decoration,
       child: TextFormField(
-        controller: _controller,
+        controller: widget.controller,
         autocorrect: false,
         keyboardType: TextInputType.phone,
         textInputAction: widget.textInputAction,
@@ -126,6 +118,8 @@ class _MobileNumberInputState extends State<MobileNumberInput> {
           isDense: true,
           hintStyle: widget.hintStyle,
           prefixIcon: CupertinoButton(
+            padding:
+                const EdgeInsets.only(left: 16, right: 8, top: 16, bottom: 16),
             onPressed: () {
               _showCountryPicker();
             },
@@ -134,6 +128,7 @@ class _MobileNumberInputState extends State<MobileNumberInput> {
               children: [
                 Image.asset(_selectedCountry.flagUri,
                     height: 20, width: 20, package: 'mobile_number_input'),
+                // Icon(Icons.arrow_drop_down, color: Colors.white,), TODO: Add arrow icon????
                 Text(
                   ' ${_selectedCountry.dialCode}',
                   style: widget.dialCodeTextStyle,
