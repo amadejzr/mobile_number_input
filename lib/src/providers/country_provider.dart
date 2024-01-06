@@ -5,6 +5,13 @@ class CountryProvider {
 
   static final CountryCode defaultCountry = CountryCode(name: 'Slovenia', dialCode: '+386', flagUri: 'assets/country/si.png');
 
+  static CountryCode setDefaultCountry(String countryName) {
+    var foundCountry = countries.firstWhere(
+      (country) => country.name.toLowerCase() == countryName.toLowerCase(),
+      orElse: () => throw Exception('No country found'),
+    );
+    return foundCountry;
+  }
 
   static final List<CountryCode> countries = [
     CountryCode(name: 'United States', dialCode: '+1', flagUri: 'assets/country/us.png'),

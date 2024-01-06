@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:mobile_number_input/src/models/country_code.dart';
-import 'package:mobile_number_input/src/providers/country_provider.dart';
 import 'package:mobile_number_input/src/widgets/country_code_dialog.dart';
 
 class MobileNumberInput extends StatefulWidget {
@@ -16,8 +15,12 @@ class MobileNumberInput extends StatefulWidget {
     this.textInputAction,
     this.dialCodeTextStyle,
     this.decoration,
+    required this.controller,
+    required this.defaultCountry,
+    required this.onCountryChanged,
   });
 
+  final CountryCode defaultCountry;
   final String? hintText;
   final TextStyle? hintStyle;
   final TextStyle? textStyle;
@@ -27,13 +30,23 @@ class MobileNumberInput extends StatefulWidget {
   final OutlineInputBorder? focusedBorder;
   final TextInputAction? textInputAction;
   final BoxDecoration? decoration;
+  final TextEditingController controller;
+  final Function(CountryCode) onCountryChanged;
 
   @override
   State<MobileNumberInput> createState() => _MobileNumberInputState();
 }
 
 class _MobileNumberInputState extends State<MobileNumberInput> {
-  CountryCode _selectedCountry = CountryProvider.defaultCountry;
+  late CountryCode _selectedCountry;
+  late TextEditingController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedCountry = widget.defaultCountry;
+    _controller = widget.controller;
+  }
 
   void _showCountryPicker() {
     showDialog(
@@ -53,13 +66,17 @@ class _MobileNumberInputState extends State<MobileNumberInput> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: widget.decoration ?? BoxDecoration(
-        color: const Color(0xFF29374F),
-        borderRadius: BorderRadius.circular(15),
-      ),
+      decoration: widget.decoration,
       child: TextFormField(
+        controller: _controller,
         autocorrect: false,
         keyboardType: TextInputType.phone,
         textInputAction: widget.textInputAction,
@@ -90,20 +107,9 @@ class _MobileNumberInputState extends State<MobileNumberInput> {
             ),
           ),
           hintText: widget.hintText,
-          border: widget.border ??
-              OutlineInputBorder(
-                borderRadius: BorderRadius.circular(15),
-              ),
-          enabledBorder: widget.enabledBorder ??
-              OutlineInputBorder(
-                borderRadius: BorderRadius.circular(15),
-                borderSide: const BorderSide(color: Color(0xFF29374F)),
-              ),
-          focusedBorder: widget.focusedBorder ??
-              OutlineInputBorder(
-                borderRadius: BorderRadius.circular(15),
-                borderSide: const BorderSide(color: Colors.blue),
-              ),
+          border: widget.border,
+          enabledBorder: widget.enabledBorder,
+          focusedBorder: widget.focusedBorder,
         ),
       ),
     );
