@@ -25,7 +25,6 @@ class _CountryCodeDialogState extends State<CountryCodeDialog> {
   late List<CountryCode> countryList;
   final ValueNotifier<List<CountryCode>> _filteredCountryListNotifier =
       ValueNotifier([]);
-  final TextEditingController _searchController = TextEditingController();
   Timer? _debounce;
 
   @override
@@ -64,7 +63,6 @@ class _CountryCodeDialogState extends State<CountryCodeDialog> {
             padding: const EdgeInsets.all(8.0),
             child: TextField(
               onChanged: _filterCountries,
-              controller: _searchController,
               decoration: const InputDecoration(
                 hintText: 'Search',
                 prefixIcon: Icon(Icons.search),
@@ -106,7 +104,6 @@ class _CountryCodeDialogState extends State<CountryCodeDialog> {
   @override
   void dispose() {
     _debounce?.cancel();
-    _searchController.dispose();
     _filteredCountryListNotifier.dispose();
     super.dispose();
   }
