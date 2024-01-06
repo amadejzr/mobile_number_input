@@ -1,7 +1,3 @@
 library mobile_number_input;
 
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
-}
+export 'src/widgets/mobile_number_input.dart';
