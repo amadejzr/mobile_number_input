@@ -1,6 +1,6 @@
 name: mobile_number_input
 description: "Customizable widget for entering phone numbers with country code selector."
-version: 0.0.2
+version: 0.0.3
 repository: https://github.com/amadejzr/mobile_number_input
 
 environment:
@@ -20,11 +20,3 @@ dev_dependencies:
 flutter:
   assets:
     - assets/country/
-
-  plugin:
-    platforms:
-      android:
-        package: com.example.mobile_number_input
-        pluginClass: MobileNumberInputPlugin
-      ios:
-        pluginClass: MobileNumberInputPlugin
