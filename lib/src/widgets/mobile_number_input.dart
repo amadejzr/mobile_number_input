@@ -3,7 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:mobile_number_input/src/models/country_code.dart';
 import 'package:mobile_number_input/src/widgets/country_code_dialog.dart';
 
-/// A widget for inputting a mobile number with an integrated country code picker.
+class MobileNumberInput extends StatefulWidget {
+  /// A widget for inputting a mobile number with an integrated country code picker.
 ///
 /// This widget displays a text field with a prefix button that, when tapped,
 /// opens a dialog for selecting the country code. The selected country's
@@ -24,6 +25,10 @@ import 'package:mobile_number_input/src/widgets/country_code_dialog.dart';
 ///  - `decoration`: The decoration to show around the text field.
 ///  - `controller`: The [TextEditingController] to use for the text field.
 ///  - `onCountryChanged`: Callback function invoked when the user selects a different country.
+///  - `dialogBackgroundColor`: The background color of the country code picker dialog.
+///  - `countryNameTextStyle`: The style to use for the country name in the country code picker dialog.
+///  - `countryCodeTextStyle`: The style to use for the country code in the country code picker dialog.
+/// 
 ///
 /// Example:
 /// ```dart
@@ -37,7 +42,6 @@ import 'package:mobile_number_input/src/widgets/country_code_dialog.dart';
 ///   // ... other properties ...
 /// )
 /// ```
-class MobileNumberInput extends StatefulWidget {
   const MobileNumberInput({
     super.key,
     this.hintText,
@@ -52,6 +56,9 @@ class MobileNumberInput extends StatefulWidget {
     required this.controller,
     required this.defaultCountry,
     required this.onCountryChanged,
+    this.dialogBackgroundColor,
+    this.countryNameTextStyle,
+    this.countryCodeTextStyle,
   });
 
   final CountryCode defaultCountry;
@@ -67,6 +74,11 @@ class MobileNumberInput extends StatefulWidget {
   final TextEditingController controller;
   final Function(CountryCode) onCountryChanged;
 
+  //dialog
+  final Color? dialogBackgroundColor;
+  final TextStyle? countryNameTextStyle;
+  final TextStyle? countryCodeTextStyle;
+
   @override
   State<MobileNumberInput> createState() => _MobileNumberInputState();
 }
@@ -80,19 +92,22 @@ class _MobileNumberInputState extends State<MobileNumberInput> {
     _selectedCountry = widget.defaultCountry;
   }
 
+    void _onCountrySelected(CountryCode selectedCountry) {
+    setState(() {
+      _selectedCountry = selectedCountry;
+    });
+    widget.onCountryChanged(selectedCountry);
+  }
+
   void _showCountryPicker() {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return CountryCodeDialog(
-          onCountrySelected: (CountryCode selectedCountry) {
-            setState(
-              () {
-                _selectedCountry = selectedCountry;
-              },
-            );
-            widget.onCountryChanged(selectedCountry);
-          },
+          backgroundColor: widget.dialogBackgroundColor,
+          countryNameTextStyle: widget.countryNameTextStyle,
+          countryCodeTextStyle: widget.countryCodeTextStyle,
+          onCountrySelected: _onCountrySelected,
         );
       },
     );
