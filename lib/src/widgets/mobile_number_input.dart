@@ -93,6 +93,7 @@ class _MobileNumberInputState extends State<MobileNumberInput> {
                 _selectedCountry = selectedCountry;
               },
             );
+            widget.onCountryChanged(selectedCountry);
           },
         );
       },
