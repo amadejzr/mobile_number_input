@@ -1,7 +1,7 @@
 name: mobile_number_input
 description: "Customizable widget for entering phone numbers with country code selector."
-version: 0.0.1
-repository: https://github.com/username/mobile_number_input
+version: 0.0.2
+repository: https://github.com/amadejzr/mobile_number_input
 
 environment:
   sdk: '>=3.2.3 <4.0.0'
