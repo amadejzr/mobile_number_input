@@ -1,4 +1,6 @@
-
+## Release [0.0.5]
+- Added example.
+- Updated README.md
 
 ## Release [0.0.4]
 - feat: Added all country codes
