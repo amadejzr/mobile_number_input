@@ -5,44 +5,44 @@ import 'package:mobile_number_input/src/widgets/country_code_dialog.dart';
 
 class MobileNumberInput extends StatefulWidget {
   /// A widget for inputting a mobile number with an integrated country code picker.
-///
-/// This widget displays a text field with a prefix button that, when tapped,
-/// opens a dialog for selecting the country code. The selected country's
-/// flag and dial code are then displayed next to the input field. Various
-/// aspects of the appearance and behavior of the input field can be
-/// customized via the provided parameters.
-///
-/// Attributes:
-///  - `defaultCountry`: The initial [CountryCode] to be used when the widget is created.
-///  - `hintText`: Text that suggests what sort of input the field accepts.
-///  - `hintStyle`: The style to use for the hintText when the field is empty.
-///  - `textStyle`: The style to use for the text being edited.
-///  - `dialCodeTextStyle`: The style to use for the displayed dial code.
-///  - `border`: The border to display around the field.
-///  - `enabledBorder`: The border to display around the field when it is enabled and not focused.
-///  - `focusedBorder`: The border to display around the field when it has input focus.
-///  - `textInputAction`: The type of action button to use for the keyboard.
-///  - `decoration`: The decoration to show around the text field.
-///  - `controller`: The [TextEditingController] to use for the text field.
-///  - `onCountryChanged`: Callback function invoked when the user selects a different country.
-///  - `dialogBackgroundColor`: The background color of the country code picker dialog.
-///  - `countryNameTextStyle`: The style to use for the country name in the country code picker dialog.
-///  - `countryCodeTextStyle`: The style to use for the country code in the country code picker dialog.
-///  - `arrowColor`: The color of the arrow icon in the country code picker dialog.
-/// 
-///
-/// Example:
-/// ```dart
-/// MobileNumberInput(
-///   defaultCountry: CountryProvider.findCountryByName('United States'),
-///   hintText: 'Enter your mobile number',
-///   controller: myController,
-///   onCountryChanged: (country) {
-///     print('Selected country: ${country.name}');
-///   },
-///   // ... other properties ...
-/// )
-/// ```
+  ///
+  /// This widget displays a text field with a prefix button that, when tapped,
+  /// opens a dialog for selecting the country code. The selected country's
+  /// flag and dial code are then displayed next to the input field. Various
+  /// aspects of the appearance and behavior of the input field can be
+  /// customized via the provided parameters.
+  ///
+  /// Attributes:
+  ///  - `defaultCountry`: The initial [CountryCode] to be used when the widget is created.
+  ///  - `hintText`: Text that suggests what sort of input the field accepts.
+  ///  - `hintStyle`: The style to use for the hintText when the field is empty.
+  ///  - `textStyle`: The style to use for the text being edited.
+  ///  - `dialCodeTextStyle`: The style to use for the displayed dial code.
+  ///  - `border`: The border to display around the field.
+  ///  - `enabledBorder`: The border to display around the field when it is enabled and not focused.
+  ///  - `focusedBorder`: The border to display around the field when it has input focus.
+  ///  - `textInputAction`: The type of action button to use for the keyboard.
+  ///  - `decoration`: The decoration to show around the text field.
+  ///  - `controller`: The [TextEditingController] to use for the text field.
+  ///  - `onCountryChanged`: Callback function invoked when the user selects a different country.
+  ///  - `dialogBackgroundColor`: The background color of the country code picker dialog.
+  ///  - `countryNameTextStyle`: The style to use for the country name in the country code picker dialog.
+  ///  - `countryCodeTextStyle`: The style to use for the country code in the country code picker dialog.
+  ///  - `arrowColor`: The color of the arrow icon in the country code picker dialog.
+  ///
+  ///
+  /// Example:
+  /// ```dart
+  /// MobileNumberInput(
+  ///   defaultCountry: CountryProvider.findCountryByName('United States'),
+  ///   hintText: 'Enter your mobile number',
+  ///   controller: myController,
+  ///   onCountryChanged: (country) {
+  ///     print('Selected country: ${country.name}');
+  ///   },
+  ///   // ... other properties ...
+  /// )
+  /// ```
   const MobileNumberInput({
     super.key,
     this.hintText,
@@ -97,7 +97,7 @@ class _MobileNumberInputState extends State<MobileNumberInput> {
     _selectedCountry = widget.defaultCountry;
   }
 
-    void _onCountrySelected(CountryCode selectedCountry) {
+  void _onCountrySelected(CountryCode selectedCountry) {
     setState(() {
       _selectedCountry = selectedCountry;
     });
